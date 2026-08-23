@@ -1,0 +1,74 @@
+[
+  {
+    "id": "6ba3a94a-b17d-4f08-9da0-384a2beef9ed",
+    "name": "Test Customer",
+    "email": "customer@test.com",
+    "phone": "+919876543210",
+    "company": "Test Industries Ltd",
+    "city": "",
+    "message": "Requesting quote for 15HP Screw compressor installation.",
+    "product": "Screw Air Compressor – 15 HP",
+    "status": "new",
+    "createdAt": "2026-08-16T17:01:25.219Z"
+  },
+  {
+    "id": "38ba1b24-8065-45c9-98fc-106072124820",
+    "name": "Test Customer",
+    "email": "customer@test.com",
+    "phone": "+919876543210",
+    "company": "Test Industries Ltd",
+    "city": "",
+    "message": "Requesting quote for 15HP Screw compressor installation.",
+    "product": "Screw Air Compressor – 15 HP",
+    "status": "new",
+    "createdAt": "2026-08-16T17:05:12.375Z"
+  },
+  {
+    "id": "57798ac1-1e2c-48e6-845d-3443bf9df79e",
+    "name": "Test Customer",
+    "email": "customer@test.com",
+    "phone": "+919876543210",
+    "company": "Test Industries Ltd",
+    "city": "",
+    "message": "Requesting quote for 15HP Screw compressor installation.",
+    "product": "Screw Air Compressor – 15 HP",
+    "status": "new",
+    "createdAt": "2026-08-16T17:18:09.679Z"
+  },
+  {
+    "id": "a02319c1-b642-409d-8959-b5535dccfc50",
+    "name": "Test Customer",
+    "email": "customer@test.com",
+    "phone": "+919876543210",
+    "company": "Test Industries Ltd",
+    "city": "",
+    "message": "Requesting quote for 15HP Screw compressor installation.",
+    "product": "Screw Air Compressor – 15 HP",
+    "status": "new",
+    "createdAt": "2026-08-16T17:24:28.749Z"
+  },
+  {
+    "id": "b17dc803-0759-41d1-bb96-e1cebb97dc74",
+    "name": "Test Customer",
+    "email": "customer@test.com",
+    "phone": "+919876543210",
+    "company": "Test Industries Ltd",
+    "city": "",
+    "message": "Requesting quote for 15HP Screw compressor installation.",
+    "product": "Screw Air Compressor – 15 HP",
+    "status": "new",
+    "createdAt": "2026-08-23T09:51:44.396Z"
+  },
+  {
+    "id": "f0749b5b-d9e7-49eb-a083-5b4836081ec7",
+    "name": "Test Customer",
+    "email": "customer@test.com",
+    "phone": "+919876543210",
+    "company": "Test Industries Ltd",
+    "city": "",
+    "message": "Requesting quote for 15HP Screw compressor installation.",
+    "product": "Screw Air Compressor – 15 HP",
+    "status": "new",
+    "createdAt": "2026-08-23T10:41:43.461Z"
+  }
+]

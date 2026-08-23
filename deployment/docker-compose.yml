@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001,https://www.aironixsolutions.com,https://aironixsolutions.com,https://admin.aironixsolutions.com
+    restart: unless-stopped
+
+  storefront:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://backend:5000
+      - NEXT_PUBLIC_SITE_URL=https://www.aironixsolutions.com
+      - NEXT_PUBLIC_CLOUDINARY_CLOUD=zo1rixsw
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - NEXT_PUBLIC_API_URL=http://backend:5000
+      - NEXT_PUBLIC_SITE_URL=https://www.aironixsolutions.com
+      - NEXT_PUBLIC_ADMIN_URL=https://admin.aironixsolutions.com
+      - NEXT_PUBLIC_CLOUDINARY_CLOUD=zo1rixsw
+    depends_on:
+      - backend
+    restart: unless-stopped

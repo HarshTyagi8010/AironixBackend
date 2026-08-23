@@ -1,0 +1,276 @@
+[
+  {
+    "id": "aac-piston-2hp",
+    "name": "Aditya Piston Compressor 2HP",
+    "category": "Piston Air Compressor",
+    "hp": 2,
+    "pressure": "8 bar",
+    "air_flow": "180 LPM",
+    "power": "1.5 kW",
+    "price": 18500,
+    "description": "Compact and reliable 2HP piston air compressor ideal for small workshops, inflating tyres, and light-duty pneumatic tools. Oil-lubricated for long-lasting performance.",
+    "features": [
+      "Oil-lubricated pump",
+      "Thermal overload protection",
+      "Pressure regulator with gauge",
+      "Quick-connect fittings",
+      "Cast iron cylinder"
+    ],
+    "applications": [
+      "Tyre inflation",
+      "Spray painting",
+      "Light pneumatic tools",
+      "Dental clinics",
+      "Small workshops"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778298/aironix/products/comp2.jpg",
+    "inStock": true,
+    "slug": "aac-piston-2hp"
+  },
+  {
+    "id": "aac-piston-3hp",
+    "name": "Aditya Piston Compressor 3HP",
+    "category": "Piston Air Compressor",
+    "hp": 3,
+    "pressure": "10 bar",
+    "air_flow": "280 LPM",
+    "power": "2.2 kW",
+    "price": 26000,
+    "description": "Versatile 3HP piston compressor suitable for automotive garages and medium-duty operations. Features a twin-cylinder design for higher output.",
+    "features": [
+      "Twin-cylinder design",
+      "Oil sight glass",
+      "Auto start/stop pressure switch",
+      "Belt-drive system",
+      "Heavy-duty receiver tank"
+    ],
+    "applications": [
+      "Automotive garages",
+      "Impact wrenches",
+      "Sandblasting",
+      "Air tools",
+      "Packaging lines"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778299/aironix/products/comp3.jpg",
+    "inStock": true,
+    "slug": "aac-piston-3hp"
+  },
+  {
+    "id": "aac-piston-5hp",
+    "name": "Aditya Piston Compressor 5HP",
+    "category": "Piston Air Compressor",
+    "hp": 5,
+    "pressure": "12 bar",
+    "air_flow": "450 LPM",
+    "power": "3.7 kW",
+    "price": 42000,
+    "description": "Heavy-duty 5HP piston air compressor for industrial applications. Robust cast iron construction ensures durability and consistent performance.",
+    "features": [
+      "Cast iron pump head",
+      "Intercooler for multi-stage models",
+      "ASME-rated pressure vessel",
+      "V-belt drive",
+      "Easy-access oil drain"
+    ],
+    "applications": [
+      "Manufacturing units",
+      "Heavy pneumatic tools",
+      "Metal fabrication",
+      "Paint shops",
+      "Agriculture"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778294/aironix/products/5HP.jpg",
+    "inStock": true,
+    "slug": "aac-piston-5hp"
+  },
+  {
+    "id": "aac-piston-10hp",
+    "name": "Aditya Piston Compressor 10HP",
+    "category": "Piston Air Compressor",
+    "hp": 10,
+    "pressure": "15 bar",
+    "air_flow": "900 LPM",
+    "power": "7.5 kW",
+    "price": 78000,
+    "description": "Industrial-grade 10HP piston compressor for high-demand operations. Two-stage compression delivers high pressure with efficiency.",
+    "features": [
+      "Two-stage compression",
+      "Intercooled design",
+      "Magnetic starter",
+      "Safety valve",
+      "Large capacity receiver"
+    ],
+    "applications": [
+      "Industrial plants",
+      "CNC machines",
+      "Textile mills",
+      "Chemical processing",
+      "Large garages"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778291/aironix/products/10HP.jpg",
+    "inStock": true,
+    "slug": "aac-piston-10hp"
+  },
+  {
+    "id": "aac-piston-15hp",
+    "name": "Aditya Piston Compressor 15HP",
+    "category": "Piston Air Compressor",
+    "hp": 15,
+    "pressure": "15 bar",
+    "air_flow": "1350 LPM",
+    "power": "11 kW",
+    "price": 115000,
+    "description": "Premium 15HP piston compressor for large-scale industrial use. Designed for continuous-duty cycles with excellent thermal management.",
+    "features": [
+      "Continuous duty rated",
+      "Automatic condensate drain",
+      "Vibration dampening mounts",
+      "Digital pressure controller",
+      "Full copper winding motor"
+    ],
+    "applications": [
+      "Foundries",
+      "Mining operations",
+      "Bottling plants",
+      "Large workshops",
+      "Pneumatic conveying"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778293/aironix/products/15HP.jpg",
+    "inStock": true,
+    "slug": "aac-piston-15hp"
+  },
+  {
+    "id": "aac-screw-5hp",
+    "name": "Aditya Screw Compressor 5HP",
+    "category": "Screw Air Compressor",
+    "hp": 5,
+    "pressure": "10 bar",
+    "air_flow": "500 LPM",
+    "power": "3.7 kW",
+    "price": 95000,
+    "description": "Entry-level rotary screw compressor for businesses requiring continuous, quiet, and oil-free air supply. 100% duty cycle for 24/7 operation.",
+    "features": [
+      "100% duty cycle",
+      "Low noise operation (62 dB)",
+      "Integrated air-oil separator",
+      "IE3 energy-efficient motor",
+      "Microcontroller display"
+    ],
+    "applications": [
+      "Food & beverage",
+      "Electronics assembly",
+      "Medical facilities",
+      "Laboratories",
+      "Printing industry"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778300/aironix/products/comp4.jpg",
+    "inStock": true,
+    "slug": "aac-screw-5hp"
+  },
+  {
+    "id": "aac-screw-10hp",
+    "name": "Aditya Screw Compressor 10HP",
+    "category": "Screw Air Compressor",
+    "hp": 10,
+    "pressure": "10 bar",
+    "air_flow": "1100 LPM",
+    "power": "7.5 kW",
+    "price": 168000,
+    "description": "Mid-range 10HP screw compressor with VFD option. Delivers consistent pressure with minimal energy consumption for medium industries.",
+    "features": [
+      "VFD-ready design",
+      "Touch-screen controller",
+      "Auto-restart after power failure",
+      "Built-in aftercooler",
+      "Oil-free air delivery"
+    ],
+    "applications": [
+      "Pharmaceutical plants",
+      "Automotive assembly",
+      "Laser cutting",
+      "Injection moulding",
+      "Textile weaving"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778301/aironix/products/comp6.jpg",
+    "inStock": true,
+    "slug": "aac-screw-10hp"
+  },
+  {
+    "id": "aac-screw-15hp",
+    "name": "Aditya Screw Compressor 15HP",
+    "category": "Screw Air Compressor",
+    "hp": 15,
+    "pressure": "10 bar",
+    "air_flow": "1700 LPM",
+    "power": "11 kW",
+    "price": 230000,
+    "description": "High-performance 15HP screw compressor with intelligent controls. Built for continuous industrial operations with remote monitoring capability.",
+    "features": [
+      "Remote monitoring (IoT-ready)",
+      "Energy recovery system",
+      "Dual-stage filtration",
+      "Soft-start motor",
+      "Predictive maintenance alerts"
+    ],
+    "applications": [
+      "Heavy manufacturing",
+      "Automobile plants",
+      "Glass industries",
+      "Paper mills",
+      "Rubber moulding"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778302/aironix/products/comp7.jpg",
+    "inStock": true,
+    "slug": "aac-screw-15hp"
+  },
+  {
+    "id": "aac-screw-30hp",
+    "name": "Aditya Screw Compressor 30HP",
+    "category": "Screw Air Compressor",
+    "hp": 30,
+    "pressure": "13 bar",
+    "air_flow": "3800 LPM",
+    "power": "22 kW",
+    "price": 480000,
+    "description": "Top-of-the-line 30HP screw air compressor for large-scale industrial and heavy manufacturing facilities. Delivers unmatched reliability at high duty cycles.",
+    "features": [
+      "Variable speed drive (VSD)",
+      "Integrated dryer option",
+      "Full-colour HMI panel",
+      "Remote diagnostics",
+      "IE4 super-premium motor"
+    ],
+    "applications": [
+      "Steel plants",
+      "Mining operations",
+      "Power plants",
+      "Shipbuilding",
+      "Heavy engineering"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778300/aironix/products/comp4.jpg",
+    "inStock": true,
+    "slug": "aac-screw-30hp"
+  },
+  {
+    "id": "audit-test-compressor-27ad86",
+    "name": "Audit Test Compressor",
+    "category": "Screw Air Compressor",
+    "hp": 20,
+    "pressure": "12 bar",
+    "air_flow": "2100 LPM",
+    "power": "15 kW",
+    "price": 310000,
+    "description": "Audit test description",
+    "features": [
+      "Feature 1",
+      "Feature 2"
+    ],
+    "applications": [
+      "App 1",
+      "App 2"
+    ],
+    "image": "https://res.cloudinary.com/zo1rixsw/image/upload/v1786778298/aironix/products/comp2.jpg",
+    "inStock": true,
+    "slug": "audit-test-compressor"
+  }
+]
