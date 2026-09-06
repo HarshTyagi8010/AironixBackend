@@ -262,6 +262,115 @@ async function runAudit() {
     results.push({ name: 'Strict Cloudinary Origin Security Guard', pass: false, error: err.message });
   }
 
+  // ── Company Information Tests ──────────────────────────────────────────────
+  // Test 10: Public GET /api/v1/company & Field Verification
+  let initialCompanyData = null;
+  try {
+    const res = await request({ path: '/api/v1/company' });
+    initialCompanyData = res.body?.data;
+    const requiredFields = ['name', 'tagline', 'phone', 'whatsapp', 'email', 'address', 'website', 'hours'];
+    const allFieldsPresent = initialCompanyData && requiredFields.every((f) => initialCompanyData[f] !== undefined);
+    const pass = res.statusCode === 200 && allFieldsPresent;
+    console.log(`[${pass ? 'PASS' : 'FAIL'}] 10. Public Company Info Endpoint (HTTP ${res.statusCode}): all fields present: ${allFieldsPresent}`);
+    results.push({ name: 'Public Company Info & Field Verification', pass });
+  } catch (err) {
+    console.error(`[FAIL] 10. Public Company Info:`, err.message);
+    results.push({ name: 'Public Company Info & Field Verification', pass: false, error: err.message });
+  }
+
+  // Test 11: Authenticated GET /api/v1/admin/company
+  try {
+    const res = await request({
+      path: '/api/v1/admin/company',
+      headers: { Authorization: `Bearer ${adminToken}` },
+    });
+    const pass = res.statusCode === 200 && res.body?.data?.name === initialCompanyData?.name;
+    console.log(`[${pass ? 'PASS' : 'FAIL'}] 11. Authenticated Admin Company GET (HTTP ${res.statusCode})`);
+    results.push({ name: 'Authenticated Admin Company GET', pass });
+  } catch (err) {
+    console.error(`[FAIL] 11. Authenticated Admin Company GET:`, err.message);
+    results.push({ name: 'Authenticated Admin Company GET', pass: false, error: err.message });
+  }
+
+  // Test 12: Authenticated PUT /api/v1/admin/company (Partial Safe Update - change ONLY phone)
+  const testUpdatedPhone = '+91-99999-88888';
+  try {
+    const updateRes = await request({
+      path: '/api/v1/admin/company',
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: { phone: testUpdatedPhone },
+    });
+    const updatedPhone = updateRes.body?.data?.phone;
+    const unchangedName = updateRes.body?.data?.name === initialCompanyData?.name;
+    const unchangedEmail = updateRes.body?.data?.email === initialCompanyData?.email;
+    const unchangedAddress = updateRes.body?.data?.address === initialCompanyData?.address;
+    const partialPass = updateRes.statusCode === 200 && updatedPhone === testUpdatedPhone && unchangedName && unchangedEmail && unchangedAddress;
+    console.log(`[${partialPass ? 'PASS' : 'FAIL'}] 12. Authenticated Admin Company Partial PUT: phone updated to ${updatedPhone}, all other fields preserved: ${unchangedName && unchangedEmail}`);
+    results.push({ name: 'Admin Company Partial PUT Persistence', pass: partialPass });
+  } catch (err) {
+    console.error(`[FAIL] 12. Admin Company Partial PUT:`, err.message);
+    results.push({ name: 'Admin Company Partial PUT Persistence', pass: false, error: err.message });
+  }
+
+  // Test 13: Public GET reflection of updated company info
+  try {
+    const res = await request({ path: '/api/v1/company' });
+    const pass = res.statusCode === 200 && res.body?.data?.phone === testUpdatedPhone;
+    console.log(`[${pass ? 'PASS' : 'FAIL'}] 13. Public Endpoint Returns Updated Company Phone: ${res.body?.data?.phone}`);
+    results.push({ name: 'Public API Reflects Admin Update', pass });
+  } catch (err) {
+    console.error(`[FAIL] 13. Public API Reflects Admin Update:`, err.message);
+    results.push({ name: 'Public API Reflects Admin Update', pass: false, error: err.message });
+  }
+
+  // Test 14: Unauthenticated PUT rejection
+  try {
+    const res = await request({
+      path: '/api/v1/admin/company',
+      method: 'PUT',
+      body: { phone: '+91-11111-22222' },
+    });
+    const pass = res.statusCode === 401;
+    console.log(`[${pass ? 'PASS' : 'FAIL'}] 14. Unauthenticated Admin Company PUT Rejection (HTTP ${res.statusCode})`);
+    results.push({ name: 'Unauthenticated Admin Company PUT Rejection', pass });
+  } catch (err) {
+    console.error(`[FAIL] 14. Unauthenticated Admin Company PUT:`, err.message);
+    results.push({ name: 'Unauthenticated Admin Company PUT Rejection', pass: false, error: err.message });
+  }
+
+  // Test 15: Invalid Email & Invalid Phone Validation
+  try {
+    const badEmailRes = await request({
+      path: '/api/v1/admin/company',
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: { email: 'not-an-email' },
+    });
+    const badPhoneRes = await request({
+      path: '/api/v1/admin/company',
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: { phone: '12' },
+    });
+    const pass = badEmailRes.statusCode === 400 && badPhoneRes.statusCode === 400;
+    console.log(`[${pass ? 'PASS' : 'FAIL'}] 15. Schema Validation for Company Info (HTTP 400 on invalid email/phone)`);
+    results.push({ name: 'Company Info Schema Validation Guards', pass });
+  } catch (err) {
+    console.error(`[FAIL] 15. Schema Validation for Company Info:`, err.message);
+    results.push({ name: 'Company Info Schema Validation Guards', pass: false, error: err.message });
+  }
+
+  // Restore initial phone number for clean state
+  if (initialCompanyData?.phone) {
+    await request({
+      path: '/api/v1/admin/company',
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: { phone: initialCompanyData.phone },
+    });
+  }
+
   console.log('\n📊 Summary of Test Results:');
   console.table(results);
 

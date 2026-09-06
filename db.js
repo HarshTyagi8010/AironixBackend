@@ -55,6 +55,26 @@ async function seedInitialData() {
     } else {
       console.log(`✓ MongoDB contains ${count} products. Skipping seeder (preserving live data).`);
     }
+
+    const CompanyInfo = require("./models/CompanyInfo");
+    const existingCompany = await CompanyInfo.findOne({ key: "primary" });
+    if (!existingCompany) {
+      console.log("ℹ Initializing default company information in MongoDB...");
+      await CompanyInfo.create({
+        key: "primary",
+        name: "Aditya Air Compressors",
+        tagline: "ISO 9001:2015 Certified Manufacturer",
+        phone: "+91-93120-66550",
+        whatsapp: "919312066550",
+        email: "adityaaircompressor@gmail.com",
+        address: "Hastsal Industrial Area, Uttam Nagar Delhi, India",
+        website: "https://www.aironixsolutions.com",
+        hours: "Mon – Sat: 9:00 AM – 6:30 PM",
+      });
+      console.log("✓ Default company information initialized in MongoDB.");
+    } else {
+      console.log("✓ MongoDB contains company information. Skipping seeder (preserving live data).");
+    }
   } catch (err) {
     console.error("✗ Seeding check error:", err.message);
   }

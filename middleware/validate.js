@@ -101,3 +101,58 @@ exports.validateUpload = (req, res, next) => {
 
   next();
 };
+
+exports.validateCompanyInfo = (req, res, next) => {
+  const { name, tagline, phone, whatsapp, email, address, website, hours } = req.body;
+  const errors = [];
+
+  if (name !== undefined) {
+    if (!name || typeof name !== "string" || name.trim().length < 2) {
+      errors.push("name is required and must be at least 2 characters");
+    }
+  }
+
+  if (tagline !== undefined && typeof tagline === "string" && tagline.trim().length > 200) {
+    errors.push("tagline must not exceed 200 characters");
+  }
+
+  if (phone !== undefined) {
+    if (!phone || typeof phone !== "string" || !PHONE_REGEX.test(phone.replace(/\s+/g, ""))) {
+      errors.push("Valid phone number is required");
+    }
+  }
+
+  if (whatsapp !== undefined && whatsapp !== "" && typeof whatsapp === "string") {
+    if (!PHONE_REGEX.test(whatsapp.replace(/[\s+]+/g, ""))) {
+      errors.push("Valid whatsapp number is required");
+    }
+  }
+
+  if (email !== undefined) {
+    if (!email || typeof email !== "string" || !EMAIL_REGEX.test(email.trim())) {
+      errors.push("Valid email address is required");
+    }
+  }
+
+  if (address !== undefined) {
+    if (!address || typeof address !== "string" || address.trim().length < 5) {
+      errors.push("address is required and must be at least 5 characters");
+    }
+  }
+
+  if (website !== undefined && website !== "" && typeof website === "string") {
+    if (!/^https?:\/\/.+/.test(website.trim())) {
+      errors.push("website must be a valid URL");
+    }
+  }
+
+  if (hours !== undefined && typeof hours === "string" && hours.trim().length > 200) {
+    errors.push("hours must not exceed 200 characters");
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).json({ success: false, errors, message: errors.join(", ") });
+  }
+
+  next();
+};

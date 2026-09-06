@@ -3,7 +3,7 @@ const rateLimit = require("express-rate-limit");
 const multer = require("multer");
 const adminController = require("../../controllers/adminController");
 const auth = require("../../middleware/auth");
-const { validateProduct, validateUpload } = require("../../middleware/validate");
+const { validateProduct, validateUpload, validateCompanyInfo } = require("../../middleware/validate");
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/", limits: { fileSize: 10 * 1024 * 1024 } });
@@ -23,6 +23,10 @@ router.post("/login", authLimiter, adminController.login); // backward-compatibl
 
 // ── Stats ────────────────────────────────────────────────────────────────────
 router.get("/stats", auth, adminController.getStats);
+
+// ── Company Info ─────────────────────────────────────────────────────────────
+router.get("/company", auth, adminController.getCompanyInfo);
+router.put("/company", auth, validateCompanyInfo, adminController.updateCompanyInfo);
 
 // ── Products CRUD ────────────────────────────────────────────────────────────
 router.get("/products", auth, adminController.getAllProducts);

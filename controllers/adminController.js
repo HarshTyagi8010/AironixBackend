@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const Product = require("../models/Product");
 const Inquiry = require("../models/Inquiry");
+const CompanyInfo = require("../models/CompanyInfo");
 const { isMongoDBConnected } = require("../db");
 
 const PRODUCTS_FILE = path.join(__dirname, "../data/products.json");
@@ -336,5 +337,142 @@ exports.uploadImage = async (req, res) => {
   } catch (err) {
     console.error("Cloudinary upload error:", err.message);
     res.status(500).json({ success: false, message: "Image upload failed" });
+  }
+};
+
+const COMPANY_INFO_FILE = path.join(__dirname, "../data/company-info.json");
+
+function readCompanyInfo() {
+  if (!fs.existsSync(COMPANY_INFO_FILE)) {
+    const defaultData = {
+      key: "primary",
+      name: "Aditya Air Compressors",
+      tagline: "ISO 9001:2015 Certified Manufacturer",
+      phone: "+91-93120-66550",
+      whatsapp: "919312066550",
+      email: "adityaaircompressor@gmail.com",
+      address: "Hastsal Industrial Area, Uttam Nagar Delhi, India",
+      website: "https://www.aironixsolutions.com",
+      hours: "Mon – Sat: 9:00 AM – 6:30 PM",
+    };
+    writeJSON(COMPANY_INFO_FILE, defaultData);
+    return defaultData;
+  }
+  return JSON.parse(fs.readFileSync(COMPANY_INFO_FILE, "utf8"));
+}
+
+// ── COMPANY INFO ─────────────────────────────────────────────────────────────
+exports.getCompanyInfo = async (req, res, next) => {
+  try {
+    if (isMongoDBConnected()) {
+      let info = await CompanyInfo.findOne({ key: "primary" }).lean();
+      if (!info) {
+        info = await CompanyInfo.create({
+          key: "primary",
+          name: "Aditya Air Compressors",
+          tagline: "ISO 9001:2015 Certified Manufacturer",
+          phone: "+91-93120-66550",
+          whatsapp: "919312066550",
+          email: "adityaaircompressor@gmail.com",
+          address: "Hastsal Industrial Area, Uttam Nagar Delhi, India",
+          website: "https://www.aironixsolutions.com",
+          hours: "Mon – Sat: 9:00 AM – 6:30 PM",
+        });
+      }
+      return res.json({
+        success: true,
+        data: {
+          name: info.name,
+          tagline: info.tagline || "",
+          phone: info.phone,
+          whatsapp: info.whatsapp || "",
+          email: info.email,
+          address: info.address,
+          website: info.website || "",
+          hours: info.hours || "",
+        },
+      });
+    }
+
+    // Local JSON store mode (when MONGODB_URI is not configured in environment)
+    const info = readCompanyInfo();
+    return res.json({
+      success: true,
+      data: {
+        name: info.name,
+        tagline: info.tagline || "",
+        phone: info.phone,
+        whatsapp: info.whatsapp || "",
+        email: info.email,
+        address: info.address,
+        website: info.website || "",
+        hours: info.hours || "",
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.updateCompanyInfo = async (req, res, next) => {
+  try {
+    const { name, tagline, phone, whatsapp, email, address, website, hours } = req.body;
+
+    const updates = {};
+    if (name !== undefined) updates.name = name.trim();
+    if (tagline !== undefined) updates.tagline = tagline.trim();
+    if (phone !== undefined) updates.phone = phone.trim();
+    if (whatsapp !== undefined) updates.whatsapp = whatsapp.trim();
+    if (email !== undefined) updates.email = email.trim();
+    if (address !== undefined) updates.address = address.trim();
+    if (website !== undefined) updates.website = website.trim();
+    if (hours !== undefined) updates.hours = hours.trim();
+
+    if (isMongoDBConnected()) {
+      const updated = await CompanyInfo.findOneAndUpdate(
+        { key: "primary" },
+        { $set: updates },
+        { new: true, upsert: true, setDefaultsOnInsert: true }
+      ).lean();
+
+      return res.json({
+        success: true,
+        data: {
+          name: updated.name,
+          tagline: updated.tagline || "",
+          phone: updated.phone,
+          whatsapp: updated.whatsapp || "",
+          email: updated.email,
+          address: updated.address,
+          website: updated.website || "",
+          hours: updated.hours || "",
+        },
+      });
+    }
+
+    // Local JSON store mode (partial-safe update)
+    const current = readCompanyInfo();
+    const updated = {
+      ...current,
+      ...updates,
+      key: "primary",
+    };
+    writeJSON(COMPANY_INFO_FILE, updated);
+
+    return res.json({
+      success: true,
+      data: {
+        name: updated.name,
+        tagline: updated.tagline || "",
+        phone: updated.phone,
+        whatsapp: updated.whatsapp || "",
+        email: updated.email,
+        address: updated.address,
+        website: updated.website || "",
+        hours: updated.hours || "",
+      },
+    });
+  } catch (error) {
+    next(error);
   }
 };
