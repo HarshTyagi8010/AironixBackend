@@ -371,6 +371,53 @@ async function runAudit() {
     });
   }
 
+  // Test 16: Compressor Accessories Category Support & Filtering
+  try {
+    const accessoryPayload = {
+      name: 'Heavy Duty Air Filter ' + Math.random().toString(36).substring(7),
+      category: 'Compressor Accessories',
+      hp: 1,
+      price: 4500,
+      pressure: '10 bar',
+      air_flow: '300 LPM',
+      power: 'N/A',
+      description: 'Precision air filter accessory for air compressors',
+      features: ['High particulate retention', 'Quick install'],
+      applications: ['Piston and Screw compressors'],
+      image: 'https://res.cloudinary.com/zo1rixsw/image/upload/v1786778305/aironix/products/tag.jpg',
+      inStock: true,
+    };
+
+    const createRes = await request({
+      path: '/api/v1/admin/products',
+      method: 'POST',
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: accessoryPayload,
+    });
+    const accId = createRes.body?.data?.id;
+
+    const filterRes = await request({
+      path: '/api/v1/products?category=Compressor%20Accessories',
+    });
+    const foundInFilter = (filterRes.body?.data || []).some((p) => p.id === accId && p.category === 'Compressor Accessories');
+
+    // Cleanup
+    if (accId) {
+      await request({
+        path: `/api/v1/admin/products/${accId}`,
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+    }
+
+    const pass = createRes.statusCode === 201 && filterRes.statusCode === 200 && foundInFilter;
+    console.log(`[${pass ? 'PASS' : 'FAIL'}] 16. Compressor Accessories Category Creation & Filtering: created=${createRes.statusCode === 201}, filtered=${foundInFilter}`);
+    results.push({ name: 'Compressor Accessories Category Support', pass });
+  } catch (err) {
+    console.error(`[FAIL] 16. Compressor Accessories Category Support:`, err.message);
+    results.push({ name: 'Compressor Accessories Category Support', pass: false, error: err.message });
+  }
+
   console.log('\n📊 Summary of Test Results:');
   console.table(results);
 

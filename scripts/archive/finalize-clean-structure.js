@@ -55,7 +55,7 @@ fePkg.name = 'aditya-air-compressors-frontend';
 fs.writeFileSync(fePkgPath, JSON.stringify(fePkg, null, 2), 'utf8');
 
 // Ensure frontend/.env.example exists
-fs.writeFileSync(path.join(frontendDest, '.env.example'), `NEXT_PUBLIC_API_URL=https://aironixsolutions-com.onrender.com\nNEXT_PUBLIC_SITE_URL=https://www.aironixsolutions.com\nNEXT_PUBLIC_CLOUDINARY_CLOUD=zo1rixsw\n`, 'utf8');
+fs.writeFileSync(path.join(frontendDest, '.env.example'), `NEXT_PUBLIC_API_URL=https://aironixbackend.onrender.com\nNEXT_PUBLIC_SITE_URL=https://www.aironixsolutions.com\nNEXT_PUBLIC_CLOUDINARY_CLOUD=zo1rixsw\n`, 'utf8');
 fs.writeFileSync(path.join(frontendDest, '.gitignore'), `node_modules/\n.next/\nout/\n.env\n.env.local\n.env.production\n*.log\n`, 'utf8');
 
 console.log('✓ frontend/ established (Clean Storefront, 0 Admin code).');
@@ -73,7 +73,7 @@ adminPkg.name = 'aditya-air-compressors-admin';
 fs.writeFileSync(adminPkgPath, JSON.stringify(adminPkg, null, 2), 'utf8');
 
 // Ensure admin/.env.example exists
-fs.writeFileSync(path.join(adminDest, '.env.example'), `NEXT_PUBLIC_API_URL=https://aironixsolutions-com.onrender.com\nNEXT_PUBLIC_SITE_URL=https://www.aironixsolutions.com\nNEXT_PUBLIC_ADMIN_URL=https://admin.aironixsolutions.com\nNEXT_PUBLIC_CLOUDINARY_CLOUD=zo1rixsw\nPORT=3001\n`, 'utf8');
+fs.writeFileSync(path.join(adminDest, '.env.example'), `NEXT_PUBLIC_API_URL=https://aironixbackend.onrender.com\nNEXT_PUBLIC_SITE_URL=https://www.aironixsolutions.com\nNEXT_PUBLIC_ADMIN_URL=https://admin.aironixsolutions.com\nNEXT_PUBLIC_CLOUDINARY_CLOUD=zo1rixsw\nPORT=3001\n`, 'utf8');
 fs.writeFileSync(path.join(adminDest, '.gitignore'), `node_modules/\n.next/\nout/\n.env\n.env.local\n.env.production\n*.log\n`, 'utf8');
 
 console.log('✓ admin/ established (Standalone Admin App).');

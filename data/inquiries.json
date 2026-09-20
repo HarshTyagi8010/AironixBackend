@@ -1,6 +1,6 @@
 [
   {
-    "id": "6ba3a94a-b17d-4f08-9da0-384a2beef9ed",
+    "id": "0ce5c231-0ce2-4269-af7a-327f83da4bb0",
     "name": "Test Customer",
     "email": "customer@test.com",
     "phone": "+919876543210",
@@ -9,10 +9,10 @@
     "message": "Requesting quote for 15HP Screw compressor installation.",
     "product": "Screw Air Compressor – 15 HP",
     "status": "new",
-    "createdAt": "2026-08-16T17:01:25.219Z"
+    "createdAt": "2026-09-20T04:22:19.244Z"
   },
   {
-    "id": "38ba1b24-8065-45c9-98fc-106072124820",
+    "id": "037e5ce7-9945-4548-9b90-f463f2d5514c",
     "name": "Test Customer",
     "email": "customer@test.com",
     "phone": "+919876543210",
@@ -21,10 +21,10 @@
     "message": "Requesting quote for 15HP Screw compressor installation.",
     "product": "Screw Air Compressor – 15 HP",
     "status": "new",
-    "createdAt": "2026-08-16T17:05:12.375Z"
+    "createdAt": "2026-09-20T04:48:01.247Z"
   },
   {
-    "id": "57798ac1-1e2c-48e6-845d-3443bf9df79e",
+    "id": "17675510-ebc8-4b5e-8e6c-c7a6711ff697",
     "name": "Test Customer",
     "email": "customer@test.com",
     "phone": "+919876543210",
@@ -33,10 +33,10 @@
     "message": "Requesting quote for 15HP Screw compressor installation.",
     "product": "Screw Air Compressor – 15 HP",
     "status": "new",
-    "createdAt": "2026-08-16T17:18:09.679Z"
+    "createdAt": "2026-09-20T13:37:01.291Z"
   },
   {
-    "id": "a02319c1-b642-409d-8959-b5535dccfc50",
+    "id": "ed55d620-0c57-49bc-b376-4b0f19745e42",
     "name": "Test Customer",
     "email": "customer@test.com",
     "phone": "+919876543210",
@@ -45,10 +45,10 @@
     "message": "Requesting quote for 15HP Screw compressor installation.",
     "product": "Screw Air Compressor – 15 HP",
     "status": "new",
-    "createdAt": "2026-08-16T17:24:28.749Z"
+    "createdAt": "2026-09-20T13:57:35.624Z"
   },
   {
-    "id": "b17dc803-0759-41d1-bb96-e1cebb97dc74",
+    "id": "b09cd3d5-79b1-47e4-9253-7bf38c2d9d0f",
     "name": "Test Customer",
     "email": "customer@test.com",
     "phone": "+919876543210",
@@ -57,90 +57,6 @@
     "message": "Requesting quote for 15HP Screw compressor installation.",
     "product": "Screw Air Compressor – 15 HP",
     "status": "new",
-    "createdAt": "2026-08-23T09:51:44.396Z"
-  },
-  {
-    "id": "f0749b5b-d9e7-49eb-a083-5b4836081ec7",
-    "name": "Test Customer",
-    "email": "customer@test.com",
-    "phone": "+919876543210",
-    "company": "Test Industries Ltd",
-    "city": "",
-    "message": "Requesting quote for 15HP Screw compressor installation.",
-    "product": "Screw Air Compressor – 15 HP",
-    "status": "new",
-    "createdAt": "2026-08-23T10:41:43.461Z"
-  },
-  {
-    "id": "569cdf78-8f0f-4d27-a458-32b85fe464de",
-    "name": "Test Customer",
-    "email": "customer@test.com",
-    "phone": "+919876543210",
-    "company": "Test Industries Ltd",
-    "city": "",
-    "message": "Requesting quote for 15HP Screw compressor installation.",
-    "product": "Screw Air Compressor – 15 HP",
-    "status": "new",
-    "createdAt": "2026-08-23T17:16:17.887Z"
-  },
-  {
-    "id": "ba7acab3-f944-48f3-bb65-d61ee446fef9",
-    "name": "Test Customer",
-    "email": "customer@test.com",
-    "phone": "+919876543210",
-    "company": "Test Industries Ltd",
-    "city": "",
-    "message": "Requesting quote for 15HP Screw compressor installation.",
-    "product": "Screw Air Compressor – 15 HP",
-    "status": "new",
-    "createdAt": "2026-08-23T17:20:08.956Z"
-  },
-  {
-    "id": "5865f19b-b96f-4762-9e7c-53160c9efd5b",
-    "name": "Test Customer",
-    "email": "customer@test.com",
-    "phone": "+919876543210",
-    "company": "Test Industries Ltd",
-    "city": "",
-    "message": "Requesting quote for 15HP Screw compressor installation.",
-    "product": "Screw Air Compressor – 15 HP",
-    "status": "new",
-    "createdAt": "2026-08-24T05:47:49.320Z"
-  },
-  {
-    "id": "e98605b7-18c9-4aa2-82e5-6daafb86bdd7",
-    "name": "Test Customer",
-    "email": "customer@test.com",
-    "phone": "+919876543210",
-    "company": "Test Industries Ltd",
-    "city": "",
-    "message": "Requesting quote for 15HP Screw compressor installation.",
-    "product": "Screw Air Compressor – 15 HP",
-    "status": "new",
-    "createdAt": "2026-08-24T08:50:29.307Z"
-  },
-  {
-    "id": "e927ae00-2ffe-4af8-bb19-959b5ff27c9a",
-    "name": "Test Customer",
-    "email": "customer@test.com",
-    "phone": "+919876543210",
-    "company": "Test Industries Ltd",
-    "city": "",
-    "message": "Requesting quote for 15HP Screw compressor installation.",
-    "product": "Screw Air Compressor – 15 HP",
-    "status": "new",
-    "createdAt": "2026-08-24T08:51:32.664Z"
-  },
-  {
-    "id": "91f93b9d-03aa-4633-942f-34798584a679",
-    "name": "Test Customer",
-    "email": "customer@test.com",
-    "phone": "+919876543210",
-    "company": "Test Industries Ltd",
-    "city": "",
-    "message": "Requesting quote for 15HP Screw compressor installation.",
-    "product": "Screw Air Compressor – 15 HP",
-    "status": "new",
-    "createdAt": "2026-08-24T10:23:23.017Z"
+    "createdAt": "2026-09-20T14:13:23.481Z"
   }
 ]
