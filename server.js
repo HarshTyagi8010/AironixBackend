@@ -14,12 +14,26 @@ const PORT = process.env.PORT || 5000;
 // Initialize database connection
 connectDB();
 
-const ALLOWED_ORIGINS = (
-  process.env.ALLOWED_ORIGINS ||
-  "http://localhost:3000,http://localhost:3001,https://www.aironixsolutions.com,https://aironixsolutions.com,https://admin.aironixsolutions.com"
-)
-  .split(",")
-  .map(origin => origin.trim());
+// ── CORS Allowed Origins Configuration ───────────────────────────────────────
+// Ensure production domains and local dev environments are always allowed,
+// even if process.env.ALLOWED_ORIGINS in production (e.g. Render) is missing any domain.
+const MANDATORY_ALLOWED_ORIGINS = [
+  "https://admin.aironixsolutions.com",
+  "https://aironixsolutions.com",
+  "https://www.aironixsolutions.com",
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:3001",
+];
+
+const envOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",")
+      .map(origin => origin.trim().replace(/^["']|["']$/g, "").replace(/\/+$/, ""))
+      .filter(Boolean)
+  : [];
+
+const ALLOWED_ORIGINS = Array.from(new Set([...MANDATORY_ALLOWED_ORIGINS, ...envOrigins]));
   
 console.log("Allowed origins:", ALLOWED_ORIGINS);
 
@@ -28,19 +42,24 @@ app.set("trust proxy", 1);
 // ── Security headers ──────────────────────────────────────────────────────────
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 
-// ── CORS ─────────────────────────────────────────────────────────────────────
-app.use(
-  cors({
-    origin: (origin, cb) => {
-      if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
-      cb(new Error("Not allowed by CORS"));
-    },
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+// ── CORS Configuration ────────────────────────────────────────────────────────
+const corsOptions = {
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true);
+    const normalized = origin.trim().replace(/\/+$/, "");
+    if (ALLOWED_ORIGINS.includes(normalized)) {
+      return cb(null, true);
+    }
+    cb(new Error("Not allowed by CORS"));
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
 
-app.options("*", cors());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use(express.json({ limit: "10kb" }));
 
